@@ -27,7 +27,7 @@ RUN PACKAGES="ca-certificates ruby procps curl pcre libstdc++ libexecinfo ruby-b
     mkdir /etc/nginx/conf/sites-available && \
     mkdir /etc/nginx/conf/sites-enabled
 
-COPY nginx.conf /etc/nginx/conf/nginx.conf
+COPY lib/nginx.conf /etc/nginx/conf/nginx.conf
 
 WORKDIR /home/app
 EXPOSE 80
