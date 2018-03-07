@@ -7,10 +7,10 @@ ENV PASSENGER_VERSION="5.2.1" \
 # create app user
 RUN adduser -h /home/app -G root -D app
 
-RUN PACKAGES="ca-certificates ruby procps curl pcre libstdc++ libexecinfo ruby-bundler ruby-dev ruby-etc ruby-rake mariadb-dev ruby-rdoc libpng nodejs yarn pngquant ruby-bigdecimal" && \
-    GEM_PACKAGES="build-base ruby-rdoc libpng-dev git libffi-dev sqlite-dev libpng-dev" && \
+RUN PACKAGES="ca-certificates ruby procps curl pcre libstdc++ libexecinfo ruby-bundler ruby-dev ruby-etc ruby-rake mariadb-dev ruby-rdoc libpng nodejs yarn ruby-bigdecimal" && \
+    GEM_PACKAGES="build-base ruby-rdoc libpng-dev git libffi-dev sqlite-dev libpng-dev pngquant" && \
     BUILD_PACKAGES="linux-headers curl-dev pcre-dev libexecinfo-dev zlib" && \
-    apk update && apk add --update $PACKAGES $BUILD_PACKAGES && \
+    apk update && apk add --update $PACKAGES $BUILD_PACKAGES $GEM_PACKAGES && \
 # download and extract
     curl -L https://s3.amazonaws.com/phusion-passenger/releases/passenger-$PASSENGER_VERSION.tar.gz | tar -xzvf - -C /lib && \
     mv /lib/passenger-$PASSENGER_VERSION /lib/passenger && \
